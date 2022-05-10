@@ -1,5 +1,7 @@
 html {
     overflow: hidden;
+    height: fill-available;
+    height: -webkit-fill-available;
 }
 
 .App {
