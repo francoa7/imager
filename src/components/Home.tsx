@@ -78,7 +78,7 @@ function Home() {
                             width={{ base: "100%", lg: "30%" }}
                             left="0"
                             top="0"
-                            h={{ base: "10%", lg: "100vh" }}
+                            h={{ base: "20%", lg: "100vh" }}
                         >
                             <Stack
                                 columnGap="1rem"
