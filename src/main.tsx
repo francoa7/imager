@@ -9,13 +9,6 @@ import { Auth0Provider } from "@auth0/auth0-react";
 import { Provider } from "react-redux";
 import { store } from "./redux/store";
 
-const redirect =
-    process.env.NODE_ENV === "production"
-        ? "https://theimager.vercel.app/home"
-        : "http://localhost:3000/home";
-
-alert(window.location.origin);
-
 ReactDOM.createRoot(document.getElementById("root")!).render(
     <React.StrictMode>
         <ChakraProvider theme={theme}>
@@ -23,7 +16,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
                 <Auth0Provider
                     domain="dev-uu7cywer.us.auth0.com"
                     clientId="SxXh3D1tHfubPufJ3y8n8hCUku9lGPhM"
-                    redirectUri={redirect}
+                    redirectUri={`${window.location.origin}/home`}
                 >
                     <Provider store={store}>
                         <App />
