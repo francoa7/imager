@@ -165,7 +165,7 @@ function Home() {
                         <Stack
                             p="2rem 1rem 2rem 1rem"
                             overflowY="scroll"
-                            h={{ base: "89%", lg: "100%" }}
+                            h={{ base: "80%", lg: "100%" }}
                             alignSelf={{ base: "center", lg: "flex-end" }}
                             width={{ base: "98%", lg: "70%" }}
                             justifyContent="center"
