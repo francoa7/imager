@@ -78,9 +78,9 @@ function Home() {
                             justifyContent="center"
                             id="userData"
                             width={{ base: "100%", lg: "30%" }}
-                            left="0"
-                            top="0"
                             h={{ base: "10%", lg: "100vh" }}
+                            position={{ base: "fixed", lg: "static" }}
+                            bottom={{ base: "0" }}
                         >
                             <Stack
                                 columnGap="1rem"
@@ -165,9 +165,9 @@ function Home() {
                             </Stack>
                         </Stack>
                         <Stack
-                            p="4rem 1rem 2rem 1rem"
+                            p="4rem 1rem 6rem 1rem"
                             overflowY="scroll"
-                            h={{ base: "90%", lg: "100%" }}
+                            h={{ base: "100%", lg: "100%" }}
                             alignSelf={{ base: "center", lg: "flex-end" }}
                             width={{ base: "98%", lg: "70%" }}
                             justifyContent="center"
