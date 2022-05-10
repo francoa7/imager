@@ -62,14 +62,12 @@ function Home() {
         <>
             {isAuthenticated && user ? (
                 <>
-                    <Navbar />
-
                     <Stack
                         overflow="hidden"
                         flexDirection={{ base: "column-reverse", lg: "row" }}
                         id="homeContainer"
                         height="100vh"
-                        justifyContent="center"
+                        justifyContent={{ base: "flex-end", lg: "center" }}
                         alignItems="center"
                         mt="0 !important"
                     >
@@ -165,9 +163,9 @@ function Home() {
                             </Stack>
                         </Stack>
                         <Stack
-                            p="4rem 1rem 6rem 1rem"
+                            p="2rem 1rem 2rem 1rem"
                             overflowY="scroll"
-                            h={{ base: "100%", lg: "100%" }}
+                            h={{ base: "89%", lg: "100%" }}
                             alignSelf={{ base: "center", lg: "flex-end" }}
                             width={{ base: "98%", lg: "70%" }}
                             justifyContent="center"
