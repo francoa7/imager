@@ -24,6 +24,9 @@ import AddFile from "./Modals/AddFile";
 import DeleteFile from "./Modals/DeleteFile";
 
 function Home() {
+    console.log("LOGEO LO DE LA PRODUCCIÓN");
+    console.log(process.env.NODE_ENV === "production");
+
     const [fileToDelete, setFileToDelete] = useState("");
     const {
         isOpen: isAddFileOpen,
