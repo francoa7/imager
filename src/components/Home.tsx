@@ -63,33 +63,42 @@ function Home() {
                     <Navbar />
 
                     <Stack
-                        flexDirection="row"
+                        overflow="hidden"
+                        flexDirection={{ base: "column-reverse", lg: "row" }}
                         id="homeContainer"
-                        height="fit-content"
+                        height="100vh"
                         justifyContent="center"
                         alignItems="center"
                         mt="0 !important"
-                        p="5rem 0 2rem 0"
                     >
                         <Stack
+                            zIndex={3}
                             justifyContent="center"
                             id="userData"
-                            width="30%"
-                            position="fixed"
+                            width={{ base: "100%", lg: "30%" }}
                             left="0"
                             top="0"
-                            h="100vh"
+                            h={{ base: "10%", lg: "100vh" }}
                         >
                             <Stack
+                                columnGap="1rem"
+                                alignItems="center"
+                                justifyContent="space-evenly"
+                                flexDirection={{ base: "row", lg: "column" }}
+                                maxH={{ base: "100%", lg: "100vh" }}
                                 alignSelf="center"
-                                width="70%"
+                                width={{ base: "100%", lg: "70%" }}
                                 id="userInfo"
-                                bgGradient="linear(to-br, primary 30%,sky )"
+                                bgGradient={{
+                                    base: "linear(to-t, primary 100%,sky )",
+                                    lg: "linear(to-br, primary 30%,sky )",
+                                }}
                                 p="2rem"
-                                borderRadius="10px"
+                                borderRadius={{ base: "0", lg: "10px" }}
                                 boxShadow="lg"
                             >
                                 <Text
+                                    display={{ base: "none", lg: "flex" }}
                                     color="white"
                                     fontWeight="900"
                                     fontSize="1.5rem"
@@ -99,7 +108,7 @@ function Home() {
                                 <Box
                                     alignSelf="center"
                                     boxShadow="lg"
-                                    p=".4rem"
+                                    p={{ base: ".1rem", lg: ".4rem" }}
                                     bg="white"
                                     borderRadius="full"
                                     width="fit-content"
@@ -107,10 +116,12 @@ function Home() {
                                     <Image
                                         src={user?.picture}
                                         borderRadius="full"
-                                        width="100px"
+                                        width={{ base: "3em", lg: "100px" }}
                                     />
                                 </Box>
-                                <Text>{user?.email}</Text>
+                                <Text display={{ base: "none", lg: "flex" }}>
+                                    {user?.email}
+                                </Text>
                                 <Stack flexDirection="row">
                                     <Stat>
                                         <StatLabel>Images</StatLabel>
@@ -151,9 +162,12 @@ function Home() {
                                 </Button>
                             </Stack>
                         </Stack>
-                        <Stack width="30%" />
                         <Stack
-                            width="70%"
+                            p="4rem 1rem 2rem 1rem"
+                            overflowY="scroll"
+                            h="100%"
+                            alignSelf={{ base: "center", lg: "flex-end" }}
+                            width={{ base: "98%", lg: "70%" }}
                             justifyContent="center"
                             alignItems="center"
                             flexDirection="row"
