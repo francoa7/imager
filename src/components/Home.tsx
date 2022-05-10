@@ -80,7 +80,7 @@ function Home() {
                             width={{ base: "100%", lg: "30%" }}
                             left="0"
                             top="0"
-                            h={{ base: window.innerHeight * 0.1, lg: "100vh" }}
+                            h={{ base: "10%", lg: "100vh" }}
                         >
                             <Stack
                                 columnGap="1rem"
@@ -167,7 +167,7 @@ function Home() {
                         <Stack
                             p="4rem 1rem 2rem 1rem"
                             overflowY="scroll"
-                            h="100%"
+                            h={{ base: "90%", lg: "100%" }}
                             alignSelf={{ base: "center", lg: "flex-end" }}
                             width={{ base: "98%", lg: "70%" }}
                             justifyContent="center"
