@@ -14,6 +14,8 @@ const redirect =
         ? "https://theimager.vercel.app/home"
         : "http://localhost:3000/home";
 
+alert(window.location.origin);
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
     <React.StrictMode>
         <ChakraProvider theme={theme}>
