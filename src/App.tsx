@@ -8,8 +8,8 @@ function App() {
     return (
         <Stack className="App">
             <Routes>
-                <Route path="/" element={<Start />} />
-                <Route path="/home" element={<Home />} />
+                <Route path="/" element={<Home />} />
+                {/* <Route path="/home" element={<Home />} /> */}
             </Routes>
         </Stack>
     );

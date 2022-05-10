@@ -36,7 +36,8 @@ function Home() {
         onClose: onDeleteFileClose,
     } = useDisclosure();
 
-    const { logout, user, isAuthenticated, isLoading } = useAuth0();
+    const { logout, user, isAuthenticated, isLoading, loginWithRedirect } =
+        useAuth0();
     const dispatch = useDispatch();
     const currentUserData = useSelector<RootState, UserData>(
         (state) => state.currentUser
@@ -57,7 +58,7 @@ function Home() {
 
     return (
         <>
-            {isAuthenticated && user && (
+            {isAuthenticated && user ? (
                 <>
                     <Navbar />
 
@@ -249,6 +250,21 @@ function Home() {
                                 currentUserData={currentUserData}
                             />
                         </Stack>
+                    </Stack>
+                </>
+            ) : (
+                <>
+                    <Navbar />
+                    <Stack
+                        height="100vh"
+                        justifyContent="center"
+                        alignItems="center"
+                        mt="0 !important"
+                    >
+                        <Button onClick={() => loginWithRedirect()}>
+                            Login
+                        </Button>
+                        ;
                     </Stack>
                 </>
             )}
