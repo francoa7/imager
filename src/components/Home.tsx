@@ -49,14 +49,10 @@ function Home() {
             dispatch<any>(getUserData(user.given_name.toLowerCase()));
     }, [isLoading]);
 
-    let file = "nofile";
-
     function openDeleteModal(fileChange: string) {
         setFileToDelete(fileChange);
         onDeleteFileOpen();
     }
-
-    console.log(window.innerHeight);
 
     return (
         <>
@@ -154,7 +150,7 @@ function Home() {
                                 <Button
                                     onClick={() =>
                                         logout({
-                                            returnTo: "http://localhost:3000/",
+                                            returnTo: window.location.origin,
                                         })
                                     }
                                 >
