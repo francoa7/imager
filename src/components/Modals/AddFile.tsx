@@ -45,13 +45,7 @@ function AddFile({
         console.log(data);
         console.log(data.file[0].name.split(".")[1]);
         const fileExtension: string = data.file[0].name.split(".")[1];
-        if (
-            // (fileExtension !== "png" &&
-            //     fileExtension !== "jpeg" &&
-            //     fileExtension !== "jpg") ||
-            username === "noUserName"
-        )
-            return;
+        if (username === "noUserName") return;
         dispatch<any>(uploadUserFile(data.file[0], username))
             .then(() => {
                 dispatch<any>(uploadUserData(username, currentUser)).then(

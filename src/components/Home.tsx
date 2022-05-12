@@ -59,12 +59,11 @@ function Home() {
     }, [isLoading]);
 
     useEffect(() => {
-        console.log(currentUserData);
-
-        console.log("CAMBIO");
-        console.log(currentUserData.username.length);
-
         if (currentUserData.username === "") {
+            console.log(currentUserData);
+            console.log("CAMBIO");
+            console.log(currentUserData.username.length);
+
             console.log("NO EXISTE, LO CREAMOS");
             username = user && user.given_name?.toLowerCase();
             console.log({ username });
