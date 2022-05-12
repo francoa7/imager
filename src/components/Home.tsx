@@ -43,24 +43,42 @@ function Home() {
         (state) => state.currentUser
     );
 
-    useEffect(() => {
-        const username = user && user.given_name?.toLowerCase();
-        username &&
-            dispatch<any>(getUserData(username)).then(() => {
-                console.log("PRIMERA OBTENCION (VACIO)");
+    let username: string | undefined;
 
-                console.log({ currentUserData });
-                if (!currentUserData.username.length) {
-                    username &&
-                        dispatch<any>(
-                            uploadUserData(username, {
-                                files: [],
-                                username: username,
-                            })
-                        ).then(() => dispatch<any>(getUserData(username)));
-                }
-            });
+    useEffect(() => {
+        if (!isLoading) {
+            username = user && user.given_name?.toLowerCase();
+            console.log({ username });
+
+            const asincronica: any =
+                username &&
+                currentUserData.username === "undefined" &&
+                dispatch<any>(getUserData(username)).then((res) => res);
+            console.log({ asincronica });
+        }
     }, [isLoading]);
+
+    useEffect(() => {
+        console.log(currentUserData);
+
+        console.log("CAMBIO");
+        console.log(currentUserData.username.length);
+
+        if (currentUserData.username === "") {
+            console.log("NO EXISTE, LO CREAMOS");
+            username = user && user.given_name?.toLowerCase();
+            console.log({ username });
+
+            username &&
+                dispatch<any>(uploadUserData(username, { files: [], username }))
+                    .then(() => {
+                        console.log("LO TOMAMOS DE NUEVO");
+
+                        username && dispatch<any>(getUserData(username));
+                    })
+                    .catch((err) => console.log({ error: err }));
+        }
+    }, [currentUserData]);
 
     function openDeleteModal(fileChange: string) {
         setFileToDelete(fileChange);

@@ -46,9 +46,9 @@ function AddFile({
         console.log(data.file[0].name.split(".")[1]);
         const fileExtension: string = data.file[0].name.split(".")[1];
         if (
-            (fileExtension !== "png" &&
-                fileExtension !== "jpeg" &&
-                fileExtension !== "jpg") ||
+            // (fileExtension !== "png" &&
+            //     fileExtension !== "jpeg" &&
+            //     fileExtension !== "jpg") ||
             username === "noUserName"
         )
             return;
@@ -58,7 +58,7 @@ function AddFile({
                     onClose
                 );
             })
-            .catch((err) => alert(err));
+            .catch((err: any) => alert(err));
     };
 
     return (

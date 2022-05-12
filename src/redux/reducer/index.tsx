@@ -8,7 +8,7 @@ import {
 
 const currentUser: UserData = {
     files: [],
-    username: "",
+    username: "undefined",
 };
 
 const currentUserFiles: UserFiles = {
@@ -26,20 +26,16 @@ export default function reducer(
 ) {
     switch (type) {
         case GET_USER_DATA:
-            if (payload.username) {
-                return {
-                    ...state,
-                    currentUser: payload,
-                };
-            } else {
-                return {
-                    ...state,
-                    currentUser: {
-                        files: [],
-                        username: "",
-                    },
-                };
-            }
+            console.log({ payload });
+            const newcurrent = payload.username
+                ? payload
+                : { files: [], username: "" };
+            console.log({ newcurrent });
+
+            return {
+                ...state,
+                currentUser: newcurrent,
+            };
 
         case UPLOAD_USER_FILE:
             if (
