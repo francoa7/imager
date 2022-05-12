@@ -53,7 +53,7 @@ function Home() {
             const asincronica: any =
                 username &&
                 currentUserData.username === "undefined" &&
-                dispatch<any>(getUserData(username)).then((res) => res);
+                dispatch<any>(getUserData(username)).then((res: any) => res);
             console.log({ asincronica });
         }
     }, [isLoading]);
@@ -75,7 +75,7 @@ function Home() {
 
                         username && dispatch<any>(getUserData(username));
                     })
-                    .catch((err) => console.log({ error: err }));
+                    .catch((err: any) => console.log({ error: err }));
         }
     }, [currentUserData]);
 
