@@ -51,7 +51,7 @@ export function uploadUserFile(file: File, username: string) {
                     payload: { username, files: [file.name] },
                 });
             })
-            .catch((err) => console.log(err));
+            .catch((err) => alert(err));
     };
 }
 

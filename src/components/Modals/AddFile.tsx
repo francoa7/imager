@@ -52,9 +52,13 @@ function AddFile({
             username === "noUserName"
         )
             return;
-        dispatch<any>(uploadUserFile(data.file[0], username)).then(() => {
-            dispatch<any>(uploadUserData(username, currentUser)).then(onClose);
-        });
+        dispatch<any>(uploadUserFile(data.file[0], username))
+            .then(() => {
+                dispatch<any>(uploadUserData(username, currentUser)).then(
+                    onClose
+                );
+            })
+            .catch((err) => alert(err));
     };
 
     return (
@@ -63,9 +67,7 @@ function AddFile({
                 <ModalOverlay />
                 <ModalContent>
                     <ModalHeader>Select your file to upload</ModalHeader>
-                    <ModalCloseButton
-                        _focus={{ outline: "none" }}
-                    />
+                    <ModalCloseButton _focus={{ outline: "none" }} />
                     <ModalBody>
                         <form onSubmit={handleSubmit(onSubmit)}>
                             <FormControl
