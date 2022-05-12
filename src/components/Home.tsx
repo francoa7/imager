@@ -44,9 +44,22 @@ function Home() {
     );
 
     useEffect(() => {
-        user &&
-            user.given_name &&
-            dispatch<any>(getUserData(user.given_name.toLowerCase()));
+        const username = user && user.given_name?.toLowerCase();
+        username &&
+            dispatch<any>(getUserData(username)).then(() => {
+                console.log("PRIMERA OBTENCION (VACIO)");
+
+                console.log({ currentUserData });
+                if (!currentUserData.username.length) {
+                    username &&
+                        dispatch<any>(
+                            uploadUserData(username, {
+                                files: [],
+                                username: username,
+                            })
+                        ).then(() => dispatch<any>(getUserData(username)));
+                }
+            });
     }, [isLoading]);
 
     function openDeleteModal(fileChange: string) {
@@ -262,6 +275,8 @@ function Home() {
                         </Stack>
                     </Stack>
                 </>
+            ) : isLoading ? (
+                <Text>Loading</Text>
             ) : (
                 <>
                     <Navbar />

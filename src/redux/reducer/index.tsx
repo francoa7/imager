@@ -26,10 +26,20 @@ export default function reducer(
 ) {
     switch (type) {
         case GET_USER_DATA:
-            return {
-                ...state,
-                currentUser: payload,
-            };
+            if (payload.username) {
+                return {
+                    ...state,
+                    currentUser: payload,
+                };
+            } else {
+                return {
+                    ...state,
+                    currentUser: {
+                        files: [],
+                        username: "",
+                    },
+                };
+            }
 
         case UPLOAD_USER_FILE:
             if (

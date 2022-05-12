@@ -13,6 +13,8 @@ export function getUserData(user: string) {
                 `https://o6dr3jtwo0.execute-api.us-east-1.amazonaws.com/dev/imagerapp-bucket/${user}.json`
             )
             .then((response) => {
+                console.log({ response });
+
                 dispatch({
                     type: GET_USER_DATA,
                     payload: response.data,
