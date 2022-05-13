@@ -13,18 +13,12 @@ export function getUserData(user: string) {
                 `https://o6dr3jtwo0.execute-api.us-east-1.amazonaws.com/dev/imagerapp-bucket/${user}.json`
             )
             .then((response) => {
-                console.log("ENTRE AL THEN");
-
-                console.log({ response });
-
                 dispatch({
                     type: GET_USER_DATA,
                     payload: response.data,
                 });
             })
             .catch((err) => {
-                console.log("ENTRE AL CATCH");
-
                 console.log(err);
             });
     };
@@ -52,8 +46,6 @@ export function uploadUserFile(file: File, username: string) {
             requestOptions
         )
             .then((res) => {
-                console.log(res);
-
                 dispatch({
                     type: UPLOAD_USER_FILE,
                     payload: { username, files: [file.name] },

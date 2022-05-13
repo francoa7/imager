@@ -38,7 +38,6 @@ function DeleteFile({
     );
 
     function deleteFile(file: string) {
-        console.log({ thefilenameis: file });
 
         username &&
             dispatch<any>(deleteUserFile(file, username)).then(() => {

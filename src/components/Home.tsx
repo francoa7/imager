@@ -22,6 +22,8 @@ import { UserFiles } from "../types/UserFiles";
 import { FaTrash, FaExternalLinkAlt } from "react-icons/fa";
 import AddFile from "./Modals/AddFile";
 import DeleteFile from "./Modals/DeleteFile";
+import { FiLogOut } from "react-icons/fi";
+import { IoAdd } from "react-icons/io5";
 
 function Home() {
     const [fileToDelete, setFileToDelete] = useState("");
@@ -48,31 +50,20 @@ function Home() {
     useEffect(() => {
         if (!isLoading) {
             username = user && user.given_name?.toLowerCase();
-            console.log({ username });
 
             const asincronica: any =
                 username &&
                 currentUserData.username === "undefined" &&
                 dispatch<any>(getUserData(username)).then((res: any) => res);
-            console.log({ asincronica });
         }
     }, [isLoading]);
 
     useEffect(() => {
         if (currentUserData.username === "") {
-            console.log(currentUserData);
-            console.log("CAMBIO");
-            console.log(currentUserData.username.length);
-
-            console.log("NO EXISTE, LO CREAMOS");
             username = user && user.given_name?.toLowerCase();
-            console.log({ username });
-
             username &&
                 dispatch<any>(uploadUserData(username, { files: [], username }))
                     .then(() => {
-                        console.log("LO TOMAMOS DE NUEVO");
-
                         username && dispatch<any>(getUserData(username));
                     })
                     .catch((err: any) => console.log({ error: err }));
@@ -96,6 +87,7 @@ function Home() {
                         justifyContent={{ base: "flex-end", lg: "center" }}
                         alignItems="center"
                         mt="0 !important"
+                        fontFamily="asap"
                     >
                         <Stack
                             zIndex={3}
@@ -109,25 +101,30 @@ function Home() {
                             <Stack
                                 columnGap="1rem"
                                 alignItems="center"
-                                justifyContent="space-evenly"
+                                rowGap="1rem"
+                                justifyContent="center"
                                 flexDirection={{ base: "row", lg: "column" }}
                                 maxH={{ base: "100%", lg: "100vh" }}
+                                h={{ lg: "100%" }}
                                 alignSelf="center"
-                                width={{ base: "100%", lg: "70%" }}
+                                width={{ base: "100%", lg: "100%" }}
                                 id="userInfo"
                                 bgGradient={{
-                                    base: "linear(to-t, primary 100%,sky )",
-                                    lg: "linear(to-br, primary 30%,sky )",
+                                    base: "linear(to-t, primaryDark 100%,verdigris )",
+                                    lg: "linear(to-br, primary 100%,white)",
                                 }}
-                                p="2rem"
-                                borderRadius={{ base: "0", lg: "10px" }}
+                                p="3rem 4rem 3rem 1rem"
+                                borderRadius={{
+                                    base: "0",
+                                    lg: "0 50% 50% 0",
+                                }}
                                 boxShadow="lg"
                             >
                                 <Text
                                     display={{ base: "none", lg: "flex" }}
-                                    color="white"
+                                    color="black"
                                     fontWeight="900"
-                                    fontSize="1.5rem"
+                                    fontSize="2rem"
                                 >
                                     {user?.name}
                                 </Text>
@@ -142,50 +139,75 @@ function Home() {
                                     <Image
                                         src={user?.picture}
                                         borderRadius="full"
-                                        width={{ base: "3em", lg: "100px" }}
+                                        width={{ base: "3em", lg: "130px" }}
                                     />
                                 </Box>
-                                <Text display={{ base: "none", lg: "flex" }}>
+                                {/* <Text display={{ base: "none", lg: "flex" }}>
                                     {user?.email}
-                                </Text>
+                                </Text> */}
                                 <Stack flexDirection="row">
                                     <Stat>
-                                        <StatLabel>Images</StatLabel>
+                                        <StatLabel
+                                            fontSize="1rem"
+                                            fontWeight={700}
+                                        >
+                                            Images
+                                        </StatLabel>
                                         <StatNumber>
                                             {currentUserData.files?.length}
                                         </StatNumber>
                                     </Stat>
                                 </Stack>
-                                <Button
-                                    borderRadius="full"
-                                    alignSelf="center"
-                                    bg="steel"
-                                    color="white"
-                                    w="fit-content"
-                                    boxShadow="lg"
-                                    onClick={onAddFileOpen}
-                                >
-                                    Add
-                                </Button>
-                                <AddFile
-                                    isOpen={isAddFileOpen}
-                                    onClose={onAddFileClose}
-                                    username={
-                                        user.given_name
-                                            ? user.given_name.toLowerCase()
-                                            : "noUserName"
-                                    }
-                                />
+                                <Stack flexDir="row" columnGap="2rem">
+                                    <IconButton
+                                        borderRadius="full"
+                                        alignSelf="center"
+                                        bg="primaryDark"
+                                        color="white"
+                                        w="fit-content"
+                                        boxShadow="lg"
+                                        onClick={onAddFileOpen}
+                                        _hover={{ bg: "skobeloff" }}
+                                        icon={<IoAdd />}
+                                        aria-label="Add"
+                                        _active={{
+                                            bg: "primaryDark",
+                                            outline: "none",
+                                        }}
+                                        _focus={{ outline: "none" }}
+                                    >
+                                        Add
+                                    </IconButton>
+                                    <AddFile
+                                        isOpen={isAddFileOpen}
+                                        onClose={onAddFileClose}
+                                        username={
+                                            user.given_name
+                                                ? user.given_name.toLowerCase()
+                                                : "noUserName"
+                                        }
+                                    />
 
-                                <Button
-                                    onClick={() =>
-                                        logout({
-                                            returnTo: window.location.origin,
-                                        })
-                                    }
-                                >
-                                    Logout
-                                </Button>
+                                    <IconButton
+                                        borderRadius="full"
+                                        border="2px"
+                                        borderColor="primaryDark"
+                                        bg="transparent"
+                                        color="primaryDark"
+                                        mt="0 !important"
+                                        icon={<FiLogOut />}
+                                        aria-label="Logout"
+                                        _hover={{ bg: "transparent" }}
+                                        onClick={() =>
+                                            logout({
+                                                returnTo:
+                                                    window.location.origin,
+                                            })
+                                        }
+                                    >
+                                        Logout
+                                    </IconButton>
+                                </Stack>
                             </Stack>
                         </Stack>
                         <Stack
@@ -198,7 +220,7 @@ function Home() {
                             alignItems="center"
                             flexDirection="row"
                             flexWrap="wrap"
-                            columnGap="1rem"
+                            columnGap={"1rem"}
                             rowGap="1rem"
                         >
                             {currentUserData.files?.map((file, index) => {
@@ -206,6 +228,7 @@ function Home() {
 
                                 return (
                                     <Box
+                                        mt="0 !important"
                                         position="relative"
                                         boxShadow="lg"
                                         key={`file:${index}`}
@@ -213,7 +236,7 @@ function Home() {
                                         bg="white"
                                         border="2px"
                                         borderRadius="10px"
-                                        borderColor="sky"
+                                        borderColor="verdigris"
                                         width="fit-content"
                                         height="fit-content"
                                         role="group"

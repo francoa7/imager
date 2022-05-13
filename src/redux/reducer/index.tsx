@@ -26,11 +26,9 @@ export default function reducer(
 ) {
     switch (type) {
         case GET_USER_DATA:
-            console.log({ payload });
             const newcurrent = payload.username
                 ? payload
                 : { files: [], username: "" };
-            console.log({ newcurrent });
 
             return {
                 ...state,
@@ -49,13 +47,10 @@ export default function reducer(
                 ...state,
             };
         case DELETE_USER_FILE:
-            console.log(state.currentUser.files);
-
             state.currentUser.files = state.currentUser.files.filter(
                 (file) => file !== payload.files[0]
             );
             state.currentUser.files.concat([]);
-            console.log(state.currentUser.files);
             return {
                 ...state,
             };

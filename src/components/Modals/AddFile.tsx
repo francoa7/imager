@@ -42,8 +42,6 @@ function AddFile({
     );
 
     const onSubmit: SubmitHandler<Inputs> = (data) => {
-        console.log(data);
-        console.log(data.file[0].name.split(".")[1]);
         const fileExtension: string = data.file[0].name.split(".")[1];
         if (username === "noUserName") return;
         dispatch<any>(uploadUserFile(data.file[0], username))
