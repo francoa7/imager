@@ -235,8 +235,8 @@ function Home() {
                             alignItems="center"
                             flexDirection="row"
                             flexWrap="wrap"
-                            columnGap="0"
-                            rowGap="0"
+                            columnGap=".5rem"
+                            rowGap=".5rem"
                         >
                             {currentUserData.files?.map((file, index) => {
                                 const url: string = `https://o6dr3jtwo0.execute-api.us-east-1.amazonaws.com/dev/imagerapp-bucket/${user.given_name?.toLowerCase()}/${

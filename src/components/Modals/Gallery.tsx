@@ -65,6 +65,7 @@ function Gallery({
                         border={"1px"}
                         borderColor={"white"}
                         _focus={{ outline: "none" }}
+                        _hover={{ color: "white", bg: "red" }}
                     />
                     <ModalBody
                         display={"flex"}
@@ -79,6 +80,7 @@ function Gallery({
                         />
                         <Stack w="80vw" alignItems={"center"}>
                             <Image
+                                transition={"all .3s"}
                                 src={
                                     !currentImage.length ? image : currentImage
                                 }
