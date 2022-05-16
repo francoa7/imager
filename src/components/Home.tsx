@@ -25,6 +25,7 @@ import DeleteFile from "./Modals/DeleteFile";
 import { FiLogOut } from "react-icons/fi";
 import { IoAdd } from "react-icons/io5";
 import Gallery from "./Modals/Gallery";
+import background from "../assets/background2.jpg";
 
 function Home() {
     const [fileToDelete, setFileToDelete] = useState("");
@@ -99,7 +100,8 @@ function Home() {
                         alignItems="center"
                         mt="0 !important"
                         fontFamily="asap"
-                        bg="primarySky"
+                        bgImg={background}
+                        // bg="primarySky"
                     >
                         <Stack
                             zIndex={3}
