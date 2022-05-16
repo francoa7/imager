@@ -40,14 +40,14 @@ export default function reducer(
                 (file) => file.name === payload.files[0].name
             );
 
-            const updated =
-                updating &&
-                state.currentUser.files.map((file) => {
-                    if (file.name === payload.files[0].name) {
-                        file.time = Date.now();
-                        return file;
-                    } else return file;
-                });
+            const updated = updating
+                ? state.currentUser.files.map((file) => {
+                      if (file.name === payload.files[0].name) {
+                          file.time = Date.now();
+                          return file;
+                      } else return file;
+                  })
+                : [];
 
             return {
                 ...state,

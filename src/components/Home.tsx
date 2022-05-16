@@ -94,7 +94,7 @@ function Home() {
                             zIndex={3}
                             justifyContent="center"
                             id="userData"
-                            width={{ base: "100%", lg: "25%" }}
+                            width={{ base: "100%", lg: "20%" }}
                             h={{ base: "10%", lg: "100vh" }}
                             position={{ base: "fixed", lg: "static" }}
                             bottom={{ base: "0" }}
@@ -129,7 +129,7 @@ function Home() {
                                     fontWeight="900"
                                     fontSize="2rem"
                                 >
-                                    {user?.name}
+                                    {user?.given_name}
                                 </Text>
                                 <Box
                                     alignSelf="center"
@@ -218,7 +218,7 @@ function Home() {
                             overflowY="scroll"
                             h={{ base: "80%", lg: "100%" }}
                             alignSelf={{ base: "center", lg: "flex-end" }}
-                            width={{ base: "98%", lg: "75%" }}
+                            width={{ base: "98%", lg: "80%" }}
                             justifyContent="center"
                             alignItems="center"
                             flexDirection="row"
@@ -284,7 +284,9 @@ function Home() {
                                         >
                                             <Link
                                                 target="_blank"
-                                                href={`https://o6dr3jtwo0.execute-api.us-east-1.amazonaws.com/dev/imagerapp-bucket/${user.given_name?.toLowerCase()}/${file}`}
+                                                href={`https://o6dr3jtwo0.execute-api.us-east-1.amazonaws.com/dev/imagerapp-bucket/${user.given_name?.toLowerCase()}/${
+                                                    file.name
+                                                }`}
                                             >
                                                 <IconButton
                                                     width="fit-content"
