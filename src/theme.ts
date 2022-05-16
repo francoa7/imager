@@ -5,10 +5,13 @@ import "@fontsource/asap";
 const theme = extendTheme({
     colors: {
         primary: "#27d9c4",
+        primaryLight: "#53E2D2",
         primaryDark: "#0f7367",
+        primarySky: "#DEF5F2",
         skobeloff: "#21665E",
         verdigris: "#61B8AE",
         pine: "#559E96",
+        pink: "#f56565",
     },
     fonts: {
         heading: "Open Sans, sans-serif",

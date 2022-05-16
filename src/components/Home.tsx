@@ -88,12 +88,13 @@ function Home() {
                         alignItems="center"
                         mt="0 !important"
                         fontFamily="asap"
+                        bg="primarySky"
                     >
                         <Stack
                             zIndex={3}
                             justifyContent="center"
                             id="userData"
-                            width={{ base: "100%", lg: "30%" }}
+                            width={{ base: "100%", lg: "25%" }}
                             h={{ base: "10%", lg: "100vh" }}
                             position={{ base: "fixed", lg: "static" }}
                             bottom={{ base: "0" }}
@@ -114,11 +115,13 @@ function Home() {
                                     lg: "linear(to-br, primary 100%,white)",
                                 }}
                                 p="3rem 4rem 3rem 1rem"
+                                borderRight="4px"
+                                borderColor="pink"
                                 borderRadius={{
                                     base: "0",
                                     lg: "0 50% 50% 0",
                                 }}
-                                boxShadow="lg"
+                                boxShadow="dark-lg"
                             >
                                 <Text
                                     display={{ base: "none", lg: "flex" }}
@@ -197,7 +200,7 @@ function Home() {
                                         mt="0 !important"
                                         icon={<FiLogOut />}
                                         aria-label="Logout"
-                                        _hover={{ bg: "transparent" }}
+                                        _hover={{ bg: "primaryLight" }}
                                         onClick={() =>
                                             logout({
                                                 returnTo:
@@ -211,32 +214,32 @@ function Home() {
                             </Stack>
                         </Stack>
                         <Stack
-                            p="2rem 1rem 2rem 1rem"
+                            p="2rem 1rem 2rem 2rem"
                             overflowY="scroll"
                             h={{ base: "80%", lg: "100%" }}
                             alignSelf={{ base: "center", lg: "flex-end" }}
-                            width={{ base: "98%", lg: "70%" }}
+                            width={{ base: "98%", lg: "75%" }}
                             justifyContent="center"
                             alignItems="center"
                             flexDirection="row"
                             flexWrap="wrap"
-                            columnGap={"1rem"}
+                            columnGap="1rem"
                             rowGap="1rem"
                         >
                             {currentUserData.files?.map((file, index) => {
-                                const url: string = `https://o6dr3jtwo0.execute-api.us-east-1.amazonaws.com/dev/imagerapp-bucket/${user.given_name?.toLowerCase()}/${file}`;
-
+                                const url: string = `https://o6dr3jtwo0.execute-api.us-east-1.amazonaws.com/dev/imagerapp-bucket/${user.given_name?.toLowerCase()}/${
+                                    file.name
+                                }`;
                                 return (
                                     <Box
                                         mt="0 !important"
                                         position="relative"
                                         boxShadow="lg"
-                                        key={`file:${index}`}
-                                        p="0.5rem"
+                                        key={`file:${file.time}`}
                                         bg="white"
                                         border="2px"
                                         borderRadius="10px"
-                                        borderColor="verdigris"
+                                        borderColor="teal.100"
                                         width="fit-content"
                                         height="fit-content"
                                         role="group"
@@ -244,6 +247,7 @@ function Home() {
                                     >
                                         <Image
                                             boxSize="200px"
+                                            borderRadius="10px"
                                             w="fit-content"
                                             maxW="100%"
                                             src={url}
@@ -257,21 +261,22 @@ function Home() {
                                             left="0"
                                             top="0"
                                             width="100%"
+                                            height="100%"
                                             position="absolute"
                                             bg="#000"
-                                            height="100%"
                                             flexDirection="row"
                                             alignItems="center"
                                             justifyContent="center"
                                         />
                                         <Stack
-                                            columnGap="2em"
+                                            id="imageActions"
                                             alignItems="center"
-                                            justifyContent="center"
+                                            justifyContent="space-evenly"
                                             flexDirection="row"
-                                            top="45%"
+                                            top="0"
                                             left="0"
                                             width="100%"
+                                            height="100%"
                                             position="absolute"
                                             opacity={0}
                                             transition="all .3s"
@@ -292,7 +297,7 @@ function Home() {
                                                 mt="0 !important"
                                                 width="fit-content"
                                                 onClick={() =>
-                                                    openDeleteModal(file)
+                                                    openDeleteModal(file.name)
                                                 }
                                                 aria-label="delete"
                                                 icon={<FaTrash />}

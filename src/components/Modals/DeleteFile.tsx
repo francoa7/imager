@@ -10,6 +10,7 @@ import {
     Stack,
     ModalFooter,
 } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteUserFile, uploadUserData } from "../../redux/actions";
 import { RootState } from "../../redux/store";
@@ -37,16 +38,18 @@ function DeleteFile({
         (state) => state.currentUser
     );
 
+    const [changed, setChanged] = useState(false);
+
+    useEffect(() => {
+        if (changed)
+            dispatch<any>(uploadUserData(username, currentUser)).then(onClose);
+    }, [currentUser, changed]);
+
     function deleteFile(file: string) {
-
         username &&
-            dispatch<any>(deleteUserFile(file, username)).then(() => {
-                const name = username || "noName";
-
-                dispatch<any>(uploadUserData(name, currentUserData)).then(
-                    onClose
-                );
-            });
+            dispatch<any>(deleteUserFile(file, username)).then(() =>
+                setChanged(true)
+            );
     }
 
     return (

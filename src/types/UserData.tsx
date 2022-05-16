@@ -1,4 +1,6 @@
+import { FileData } from "./FileData";
+
 export type UserData = {
-    files: Array<string>;
+    files: Array<FileData>;
     username: string;
 };

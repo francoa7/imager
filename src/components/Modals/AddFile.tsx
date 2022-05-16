@@ -11,6 +11,7 @@ import {
     Input,
     Stack,
 } from "@chakra-ui/react";
+import { useEffect, useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import { uploadUserData, uploadUserFile } from "../../redux/actions";
@@ -33,24 +34,24 @@ function AddFile({
     const {
         register,
         handleSubmit,
-        watch,
         formState: { errors },
     } = useForm<Inputs>();
     const dispatch = useDispatch();
     const currentUser = useSelector<RootState, UserData>(
         (state) => state.currentUser
     );
+    const [changed, setChanged] = useState(false);
 
-    const onSubmit: SubmitHandler<Inputs> = (data) => {
-        const fileExtension: string = data.file[0].name.split(".")[1];
+    useEffect(() => {
+        if (changed)
+            dispatch<any>(uploadUserData(username, currentUser)).then(onClose);
+    }, [currentUser, changed]);
+
+    const onSubmit: SubmitHandler<Inputs> = async (data) => {
         if (username === "noUserName") return;
-        dispatch<any>(uploadUserFile(data.file[0], username))
-            .then(() => {
-                dispatch<any>(uploadUserData(username, currentUser)).then(
-                    onClose
-                );
-            })
-            .catch((err: any) => alert(err));
+        dispatch<any>(uploadUserFile(data.file[0], username)).then(() =>
+            setChanged(true)
+        );
     };
 
     return (

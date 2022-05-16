@@ -36,23 +36,42 @@ export default function reducer(
             };
 
         case UPLOAD_USER_FILE:
-            if (
-                !state.currentUser.files.find(
-                    (file) => file === payload.files[0]
-                )
-            )
-                state.currentUser.files.push(payload.files[0]);
+            const updating: boolean = !!state.currentUser.files.find(
+                (file) => file.name === payload.files[0].name
+            );
+
+            const updated =
+                updating &&
+                state.currentUser.files.map((file) => {
+                    if (file.name === payload.files[0].name) {
+                        file.time = Date.now();
+                        return file;
+                    } else return file;
+                });
 
             return {
                 ...state,
+                currentUser: {
+                    ...state.currentUser,
+                    files: updating
+                        ? updated
+                        : [
+                              ...state.currentUser.files,
+                              { time: Date.now(), name: payload.files[0].name },
+                          ],
+                },
             };
         case DELETE_USER_FILE:
-            state.currentUser.files = state.currentUser.files.filter(
-                (file) => file !== payload.files[0]
+            let delFiles = state.currentUser.files.filter(
+                (file) => file.name !== payload.files[0].name
             );
-            state.currentUser.files.concat([]);
+
             return {
                 ...state,
+                currentUser: {
+                    username: state.currentUser.username,
+                    files: delFiles,
+                },
             };
         default:
             return state;

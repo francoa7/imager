@@ -13,23 +13,18 @@ export function getUserData(user: string) {
                 `https://o6dr3jtwo0.execute-api.us-east-1.amazonaws.com/dev/imagerapp-bucket/${user}.json`
             )
             .then((response) => {
-                dispatch({
+                return dispatch({
                     type: GET_USER_DATA,
                     payload: response.data,
                 });
             })
-            .catch((err) => {
-                console.log(err);
-            });
+            .catch((err) => console.log(err));
     };
 }
 
 export function uploadUserFile(file: File, username: string) {
     return function (
-        dispatch: (arg0: {
-            type: string;
-            payload: { username: string; files: string[] };
-        }) => void
+        dispatch: (arg0: { type: string; payload: UserData }) => void
     ) {
         const formData = new FormData();
         formData.append("file", file);
@@ -45,13 +40,16 @@ export function uploadUserFile(file: File, username: string) {
             `https://o6dr3jtwo0.execute-api.us-east-1.amazonaws.com/dev/imagerapp-bucket/${username}/${file.name}`,
             requestOptions
         )
-            .then((res) => {
-                dispatch({
+            .then(() => {
+                return dispatch({
                     type: UPLOAD_USER_FILE,
-                    payload: { username, files: [file.name] },
+                    payload: {
+                        username,
+                        files: [{ time: Date.now(), name: file.name }],
+                    },
                 });
             })
-            .catch((err) => alert({ err }));
+            .catch((err) => console.log({ err }));
     };
 }
 
@@ -77,10 +75,7 @@ export function uploadUserData(username: string, currentUser: UserData) {
 
 export function deleteUserFile(file: string, username: string) {
     return function (
-        dispatch: (arg0: {
-            type: string;
-            payload: { username: string; files: string[] };
-        }) => any
+        dispatch: (arg0: { type: string; payload: UserData }) => any
     ) {
         const requestOptions = {
             method: "DELETE",
@@ -94,7 +89,10 @@ export function deleteUserFile(file: string, username: string) {
             .then(() =>
                 dispatch({
                     type: DELETE_USER_FILE,
-                    payload: { username, files: [file] },
+                    payload: {
+                        username,
+                        files: [{ time: Date.now(), name: file }],
+                    },
                 })
             )
             .catch((err) => console.log(err));
