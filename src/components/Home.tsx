@@ -101,7 +101,6 @@ function Home() {
                         mt="0 !important"
                         fontFamily="asap"
                         bgImg={background}
-                        // bg="primarySky"
                     >
                         <Stack
                             zIndex={3}

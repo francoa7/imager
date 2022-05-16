@@ -3,6 +3,9 @@ html {
     height: fill-available;
     height: -webkit-fill-available;
 }
+.modale {
+    opacity: 0.5;
+}
 
 .App {
     text-align: center;

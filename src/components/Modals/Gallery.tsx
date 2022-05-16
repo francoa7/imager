@@ -16,6 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { GrNext, GrPrevious } from "react-icons/gr";
+import background from "../../assets/background2.jpg";
 
 function Gallery({
     isOpen,
@@ -58,7 +59,7 @@ function Gallery({
                 id="ELCONTENEDOR"
             >
                 <ModalOverlay />
-                <ModalContent bg="blackAlpha.700">
+                <ModalContent bg="blackAlpha.900">
                     <ModalCloseButton
                         color="red"
                         bg="white"
@@ -72,6 +73,18 @@ function Gallery({
                         justifyContent="center"
                         alignItems={"center"}
                     >
+                        <Image
+                            src={background}
+                            width="100vw"
+                            h="100vh"
+                            position={"fixed"}
+                            top="0"
+                            left="0"
+                            zIndex={-1}
+                            opacity={0.3}
+                            filter="auto"
+                            blur="2px"
+                        />
                         <IconButton
                             aria-label="next"
                             icon={<GrPrevious />}
@@ -80,6 +93,9 @@ function Gallery({
                         />
                         <Stack w="80vw" alignItems={"center"}>
                             <Image
+                                //   bg="white"
+                                //   boxShadow="dark-lg"
+                                borderRadius={"10px"}
                                 transition={"all .3s"}
                                 src={
                                     !currentImage.length ? image : currentImage
