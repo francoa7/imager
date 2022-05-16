@@ -24,9 +24,11 @@ import AddFile from "./Modals/AddFile";
 import DeleteFile from "./Modals/DeleteFile";
 import { FiLogOut } from "react-icons/fi";
 import { IoAdd } from "react-icons/io5";
+import Gallery from "./Modals/Gallery";
 
 function Home() {
     const [fileToDelete, setFileToDelete] = useState("");
+    const [imageToShow, setImageToShow] = useState("");
     const {
         isOpen: isAddFileOpen,
         onOpen: onAddFileOpen,
@@ -37,7 +39,11 @@ function Home() {
         onOpen: onDeleteFileOpen,
         onClose: onDeleteFileClose,
     } = useDisclosure();
-
+    const {
+        isOpen: isGalleryOpen,
+        onOpen: onGalleryOpen,
+        onClose: onGalleryClose,
+    } = useDisclosure();
     const { logout, user, isAuthenticated, isLoading, loginWithRedirect } =
         useAuth0();
     const dispatch = useDispatch();
@@ -73,6 +79,11 @@ function Home() {
     function openDeleteModal(fileChange: string) {
         setFileToDelete(fileChange);
         onDeleteFileOpen();
+    }
+
+    function openGallery(image: string) {
+        setImageToShow(image);
+        onGalleryOpen();
     }
 
     return (
@@ -214,6 +225,7 @@ function Home() {
                             </Stack>
                         </Stack>
                         <Stack
+                            id="imagesContainer"
                             p="2rem 1rem 2rem 2rem"
                             overflowY="scroll"
                             h={{ base: "80%", lg: "100%" }}
@@ -223,8 +235,8 @@ function Home() {
                             alignItems="center"
                             flexDirection="row"
                             flexWrap="wrap"
-                            columnGap="1rem"
-                            rowGap="1rem"
+                            columnGap="0"
+                            rowGap="0"
                         >
                             {currentUserData.files?.map((file, index) => {
                                 const url: string = `https://o6dr3jtwo0.execute-api.us-east-1.amazonaws.com/dev/imagerapp-bucket/${user.given_name?.toLowerCase()}/${
@@ -234,22 +246,19 @@ function Home() {
                                     <Box
                                         mt="0 !important"
                                         position="relative"
-                                        boxShadow="lg"
+                                        boxShadow="dark-lg"
                                         key={`file:${file.time}`}
                                         bg="white"
-                                        border="2px"
-                                        borderRadius="10px"
-                                        borderColor="teal.100"
-                                        width="fit-content"
-                                        height="fit-content"
+                                        maxW="40%"
+                                        h="30%"
+                                        borderRadius="15px"
                                         role="group"
                                         _hover={{ cursor: "pointer" }}
                                     >
                                         <Image
-                                            boxSize="200px"
-                                            borderRadius="10px"
-                                            w="fit-content"
-                                            maxW="100%"
+                                            h="100%"
+                                            objectFit="cover"
+                                            borderRadius="15px"
                                             src={url}
                                             alt="Foto no se cargo"
                                         />
@@ -282,19 +291,13 @@ function Home() {
                                             transition="all .3s"
                                             _groupHover={{ opacity: "1" }}
                                         >
-                                            <Link
-                                                target="_blank"
-                                                href={`https://o6dr3jtwo0.execute-api.us-east-1.amazonaws.com/dev/imagerapp-bucket/${user.given_name?.toLowerCase()}/${
-                                                    file.name
-                                                }`}
-                                            >
-                                                <IconButton
-                                                    width="fit-content"
-                                                    aria-label="delete"
-                                                    icon={<FaExternalLinkAlt />}
-                                                    colorScheme="gray"
-                                                />
-                                            </Link>
+                                            <IconButton
+                                                width="fit-content"
+                                                aria-label="delete"
+                                                icon={<FaExternalLinkAlt />}
+                                                colorScheme="gray"
+                                                onClick={() => openGallery(url)}
+                                            />
                                             <IconButton
                                                 mt="0 !important"
                                                 width="fit-content"
@@ -309,6 +312,17 @@ function Home() {
                                     </Box>
                                 );
                             })}
+                            <Gallery
+                                image={imageToShow}
+                                isOpen={isGalleryOpen}
+                                onClose={onGalleryClose}
+                                images={currentUserData.files.map(
+                                    (file) =>
+                                        `https://o6dr3jtwo0.execute-api.us-east-1.amazonaws.com/dev/imagerapp-bucket/${user.given_name?.toLowerCase()}/${
+                                            file.name
+                                        }`
+                                )}
+                            />
                             <DeleteFile
                                 isOpen={isDeleteFileOpen}
                                 onClose={onDeleteFileClose}
