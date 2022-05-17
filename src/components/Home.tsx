@@ -228,7 +228,7 @@ function Home() {
                         </Stack>
                         <Stack
                             id="imagesContainer"
-                            p="2rem 1rem 12% 2rem"
+                            p="2rem 1rem 20% 2rem"
                             overflowY="scroll"
                             h={{ base: "88%", lg: "100%" }}
                             alignSelf={{ base: "center", lg: "flex-end" }}
