@@ -256,9 +256,9 @@ function Home() {
                                         boxShadow="dark-lg"
                                         key={`file:${file.time}`}
                                         bg="white"
-                                        boxSize={{ base: "100px", lg: "220px" }}
+                                        boxSize={{ base: "120px", lg: "220px" }}
                                         w={"30%"}
-                                        minW={{ base: "100px", lg: "220px" }}
+                                        minW={{ base: "120px", lg: "220px" }}
                                         role="group"
                                         _hover={{ cursor: "pointer" }}
                                     >
