@@ -59,16 +59,20 @@ function Gallery({
                 id="ELCONTENEDOR"
             >
                 <ModalOverlay />
-                <ModalContent bg="blackAlpha.900">
+                <ModalContent bg="blackAlpha.900" borderRadius="0">
                     <ModalCloseButton
+                        size={"lg"}
+                        p="1.2rem"
                         color="red"
                         bg="white"
-                        border={"1px"}
-                        borderColor={"white"}
                         _focus={{ outline: "none" }}
-                        _hover={{ color: "white", bg: "red" }}
+                        _hover={{
+                            color: "white",
+                            bgGradient: "linear(to-br, red ,pink )",
+                        }}
                     />
                     <ModalBody
+                        userSelect={"none"}
                         pt="2rem"
                         display={"flex"}
                         justifyContent={{ base: "space-evenly", lg: "center" }}
@@ -94,10 +98,18 @@ function Gallery({
                             mr="2rem"
                             onClick={() => changeImage("previous")}
                             display={{ base: "none", lg: "flex" }}
+                            borderRadius="50% 10% 10% 50%"
+                            _focus={{ outline: "none" }}
+                            p="2.5rem 0"
+                            _hover={{
+                                bg: "#aaa",
+                            }}
                         />
                         <Stack
                             w={{ base: "95vw", lg: "80vw" }}
+                            h={{ base: "80vh" }}
                             alignItems={"center"}
+                            justifyContent={{ base: "center" }}
                         >
                             <Image
                                 borderRadius={"10px"}
@@ -115,6 +127,12 @@ function Gallery({
                             ml="2rem"
                             display={{ base: "none", lg: "flex" }}
                             onClick={() => changeImage("next")}
+                            borderRadius="10% 50% 50% 10%"
+                            _focus={{ outline: "none" }}
+                            p="2.5rem 0"
+                            _hover={{
+                                bg: "#aaa",
+                            }}
                         />
                         <Stack
                             display={{ base: "flex", lg: "none" }}

@@ -246,27 +246,28 @@ function Home() {
                                 }`;
                                 return (
                                     <Box
+                                        border={"4px"}
+                                        borderColor={"white"}
                                         mt="0 !important"
                                         position="relative"
                                         boxShadow="dark-lg"
                                         key={`file:${file.time}`}
                                         bg="white"
-                                        maxW="40%"
-                                        h="30%"
-                                        borderRadius="15px"
+                                        boxSize={"220px"}
+                                        w="30%"
+                                        minW="220px"
                                         role="group"
                                         _hover={{ cursor: "pointer" }}
                                     >
                                         <Image
+                                            minW="100%"
                                             h="100%"
                                             objectFit="cover"
-                                            borderRadius="15px"
                                             src={url}
                                             alt="Foto no se cargo"
                                         />
                                         <Stack
                                             transition="all .3s"
-                                            borderRadius="10px"
                                             opacity={0}
                                             _groupHover={{ opacity: "0.6" }}
                                             left="0"
