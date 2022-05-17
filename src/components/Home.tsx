@@ -228,11 +228,14 @@ function Home() {
                         </Stack>
                         <Stack
                             id="imagesContainer"
-                            p="2rem 1rem 20% 2rem"
+                            p={{
+                                base: "1rem .1rem 20% .1rem",
+                                lg: "2rem 1rem 20% 2rem",
+                            }}
                             overflowY="scroll"
                             h={{ base: "88%", lg: "100%" }}
                             alignSelf={{ base: "center", lg: "flex-end" }}
-                            width={{ base: "98%", lg: "80%" }}
+                            width={{ base: "100%", lg: "80%" }}
                             justifyContent={{
                                 base: "center",
                                 lg: "center",
@@ -240,8 +243,8 @@ function Home() {
                             alignItems="center"
                             flexDirection="row"
                             flexWrap="wrap"
-                            columnGap=".5rem"
-                            rowGap=".5rem"
+                            columnGap={{ base: "1rem", lg: ".5rem" }}
+                            rowGap={{ base: "1rem", lg: ".5rem" }}
                         >
                             {currentUserData.files?.map((file, index) => {
                                 const url: string = `https://o6dr3jtwo0.execute-api.us-east-1.amazonaws.com/dev/imagerapp-bucket/${user.given_name?.toLowerCase()}/${
@@ -256,9 +259,9 @@ function Home() {
                                         boxShadow="dark-lg"
                                         key={`file:${file.time}`}
                                         bg="white"
-                                        boxSize={{ base: "120px", lg: "220px" }}
+                                        boxSize={{ base: "45vw", lg: "220px" }}
                                         w={"30%"}
-                                        minW={{ base: "120px", lg: "220px" }}
+                                        minW={{ base: "40vw", lg: "220px" }}
                                         role="group"
                                         _hover={{ cursor: "pointer" }}
                                     >
