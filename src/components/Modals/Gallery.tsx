@@ -69,9 +69,11 @@ function Gallery({
                         _hover={{ color: "white", bg: "red" }}
                     />
                     <ModalBody
+                        pt="2rem"
                         display={"flex"}
-                        justifyContent="center"
+                        justifyContent={{ base: "space-evenly", lg: "center" }}
                         alignItems={"center"}
+                        flexDir={{ base: "column", lg: "row" }}
                     >
                         <Image
                             src={background}
@@ -84,17 +86,20 @@ function Gallery({
                             opacity={0.3}
                             filter="auto"
                             blur="2px"
+                            objectFit={"cover"}
                         />
                         <IconButton
                             aria-label="next"
                             icon={<GrPrevious />}
                             mr="2rem"
                             onClick={() => changeImage("previous")}
+                            display={{ base: "none", lg: "flex" }}
                         />
-                        <Stack w="80vw" alignItems={"center"}>
+                        <Stack
+                            w={{ base: "95vw", lg: "80vw" }}
+                            alignItems={"center"}
+                        >
                             <Image
-                                //   bg="white"
-                                //   boxShadow="dark-lg"
                                 borderRadius={"10px"}
                                 transition={"all .3s"}
                                 src={
@@ -108,8 +113,29 @@ function Gallery({
                             aria-label="next"
                             icon={<GrNext />}
                             ml="2rem"
+                            display={{ base: "none", lg: "flex" }}
                             onClick={() => changeImage("next")}
                         />
+                        <Stack
+                            display={{ base: "flex", lg: "none" }}
+                            flexDir="row"
+                        >
+                            <IconButton
+                                aria-label="next"
+                                icon={<GrPrevious />}
+                                mr="2rem"
+                                onClick={() => changeImage("previous")}
+                                display={{ base: "flex", lg: "none" }}
+                            />
+                            <IconButton
+                                mt="0 !important"
+                                aria-label="next"
+                                icon={<GrNext />}
+                                ml="2rem"
+                                display={{ base: "flex", lg: "none" }}
+                                onClick={() => changeImage("next")}
+                            />
+                        </Stack>
                     </ModalBody>
                 </ModalContent>
             </Modal>

@@ -70,6 +70,7 @@ button {
     background: #000000;
 }
 ::-webkit-scrollbar-track {
+    margin-bottom: 30px;
     background: #cbf7ff;
     border: 1px none #1f8811;
     border-radius: 50px;

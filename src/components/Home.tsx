@@ -107,28 +107,29 @@ function Home() {
                             justifyContent="center"
                             id="userData"
                             width={{ base: "100%", lg: "20%" }}
-                            h={{ base: "10%", lg: "100vh" }}
+                            h={{ base: "12%", lg: "100vh" }}
                             position={{ base: "fixed", lg: "static" }}
                             bottom={{ base: "0" }}
                         >
                             <Stack
                                 columnGap="1rem"
                                 alignItems="center"
-                                rowGap="1rem"
                                 justifyContent="center"
+                                rowGap="1rem"
                                 flexDirection={{ base: "row", lg: "column" }}
                                 maxH={{ base: "100%", lg: "100vh" }}
-                                h={{ lg: "100%" }}
+                                h={{ base: "100%", lg: "100%" }}
                                 alignSelf="center"
                                 width={{ base: "100%", lg: "100%" }}
                                 id="userInfo"
                                 bgGradient={{
-                                    base: "linear(to-t, primaryDark 100%,verdigris )",
+                                    base: "linear(to-br, primary 100%,white )",
                                     lg: "linear(to-br, primary 100%,white)",
                                 }}
-                                p="3rem 4rem 3rem 1rem"
-                                borderRight="4px"
-                                borderColor="pink"
+                                p={{ base: "none", lg: "3rem 4rem 3rem 1rem" }}
+                                borderRight={{ base: "none", lg: "4px" }}
+                                borderTop={{ base: "4px", lg: "none" }}
+                                borderColor={{ base: "pink", lg: "pink" }}
                                 borderRadius={{
                                     base: "0",
                                     lg: "0 50% 50% 0",
@@ -229,7 +230,7 @@ function Home() {
                             id="imagesContainer"
                             p="2rem 1rem 2rem 2rem"
                             overflowY="scroll"
-                            h={{ base: "80%", lg: "100%" }}
+                            h={{ base: "88%", lg: "100%" }}
                             alignSelf={{ base: "center", lg: "flex-end" }}
                             width={{ base: "98%", lg: "80%" }}
                             justifyContent="center"
