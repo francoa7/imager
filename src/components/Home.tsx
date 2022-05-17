@@ -233,7 +233,10 @@ function Home() {
                             h={{ base: "88%", lg: "100%" }}
                             alignSelf={{ base: "center", lg: "flex-end" }}
                             width={{ base: "98%", lg: "80%" }}
-                            justifyContent="center"
+                            justifyContent={{
+                                base: "center",
+                                lg: "center",
+                            }}
                             alignItems="center"
                             flexDirection="row"
                             flexWrap="wrap"
@@ -253,9 +256,9 @@ function Home() {
                                         boxShadow="dark-lg"
                                         key={`file:${file.time}`}
                                         bg="white"
-                                        boxSize={"220px"}
-                                        w="30%"
-                                        minW="220px"
+                                        boxSize={{ base: "30%", lg: "220px" }}
+                                        w={"30%"}
+                                        minW={{ base: "100px", lg: "220px" }}
                                         role="group"
                                         _hover={{ cursor: "pointer" }}
                                     >
