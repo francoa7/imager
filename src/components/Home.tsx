@@ -56,7 +56,11 @@ function Home() {
 
     useEffect(() => {
         if (!isLoading) {
-            username = user && user.given_name?.toLowerCase();
+            username =
+                user &&
+                (user.given_name?.toLowerCase() ||
+                    user.nickname?.toLowerCase());
+            console.log(username);
 
             const asincronica: any =
                 username &&
@@ -67,7 +71,10 @@ function Home() {
 
     useEffect(() => {
         if (currentUserData.username === "") {
-            username = user && user.given_name?.toLowerCase();
+            username =
+                user &&
+                (user.given_name?.toLowerCase() ||
+                    user.nickname?.toLowerCase());
             username &&
                 dispatch<any>(uploadUserData(username, { files: [], username }))
                     .then(() => {
@@ -86,6 +93,7 @@ function Home() {
         setImageToShow(image);
         onGalleryOpen();
     }
+    console.log({ user });
 
     return (
         <>
@@ -140,9 +148,9 @@ function Home() {
                                     display={{ base: "none", lg: "flex" }}
                                     color="black"
                                     fontWeight="900"
-                                    fontSize="2rem"
+                                    fontSize="1.5rem"
                                 >
-                                    {user?.given_name}
+                                    {user?.given_name || user.nickname}
                                 </Text>
                                 <Box
                                     alignSelf="center"
@@ -198,8 +206,9 @@ function Home() {
                                         isOpen={isAddFileOpen}
                                         onClose={onAddFileClose}
                                         username={
-                                            user.given_name
-                                                ? user.given_name.toLowerCase()
+                                            user.given_name || user.nickname
+                                                ? user.given_name?.toLowerCase() ||
+                                                  user.nickname?.toLowerCase()
                                                 : "noUserName"
                                         }
                                     />
@@ -230,7 +239,7 @@ function Home() {
                             id="imagesContainer"
                             p={{
                                 base: "1rem .1rem 20% .1rem",
-                                lg: "2rem 1rem 20% 2rem",
+                                lg: "2rem 1rem 2rem 2rem",
                             }}
                             overflowY="scroll"
                             h={{ base: "88%", lg: "100%" }}
@@ -247,9 +256,10 @@ function Home() {
                             rowGap={{ base: "1rem", lg: ".5rem" }}
                         >
                             {currentUserData.files?.map((file, index) => {
-                                const url: string = `https://o6dr3jtwo0.execute-api.us-east-1.amazonaws.com/dev/imagerapp-bucket/${user.given_name?.toLowerCase()}/${
-                                    file.name
-                                }`;
+                                const url: string = `https://o6dr3jtwo0.execute-api.us-east-1.amazonaws.com/dev/imagerapp-bucket/${
+                                    user.given_name?.toLowerCase() ||
+                                    user.nickname?.toLowerCase()
+                                }/${file.name}`;
                                 return (
                                     <Box
                                         border={"4px"}
@@ -327,9 +337,10 @@ function Home() {
                                 onClose={onGalleryClose}
                                 images={currentUserData.files.map(
                                     (file) =>
-                                        `https://o6dr3jtwo0.execute-api.us-east-1.amazonaws.com/dev/imagerapp-bucket/${user.given_name?.toLowerCase()}/${
-                                            file.name
-                                        }`
+                                        `https://o6dr3jtwo0.execute-api.us-east-1.amazonaws.com/dev/imagerapp-bucket/${
+                                            user.given_name?.toLowerCase() ||
+                                            user.nickname?.toLowerCase()
+                                        }/${file.name}`
                                 )}
                             />
                             <DeleteFile
@@ -337,6 +348,7 @@ function Home() {
                                 onClose={onDeleteFileClose}
                                 username={
                                     user.given_name?.toLocaleLowerCase() ||
+                                    user.nickname?.toLowerCase() ||
                                     "noUserName"
                                 }
                                 filename={fileToDelete}
