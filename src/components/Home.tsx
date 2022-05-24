@@ -202,13 +202,15 @@ function Home() {
                                     >
                                         Add
                                     </IconButton>
+
                                     <AddFile
                                         isOpen={isAddFileOpen}
                                         onClose={onAddFileClose}
                                         username={
-                                            user.given_name || user.nickname
-                                                ? user.given_name?.toLowerCase() ||
-                                                  user.nickname?.toLowerCase()
+                                            user.given_name
+                                                ? user.given_name?.toLowerCase()
+                                                : user.nickname
+                                                ? user.nickname.toLowerCase()
                                                 : "noUserName"
                                         }
                                     />

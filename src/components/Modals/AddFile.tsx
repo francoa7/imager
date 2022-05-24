@@ -29,7 +29,7 @@ function AddFile({
 }: {
     isOpen: boolean;
     onClose: () => void;
-    username: string | undefined;
+    username: string;
 }) {
     const {
         register,
