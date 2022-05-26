@@ -1,7 +1,6 @@
 import "./App.css";
 import { Stack } from "@chakra-ui/react";
 import { Routes, Route } from "react-router-dom";
-import Start from "./components/Start";
 import Home from "./components/Home";
 
 function App() {
