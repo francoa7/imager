@@ -403,6 +403,7 @@ function Home() {
                             boxShadow={"dark-lg"}
                             rowGap={"2rem"}
                             h={"fit-content"}
+                            mb={"2rem"}
                         >
                             <Stack
                                 w={{ base: "100%", md: "60%" }}
