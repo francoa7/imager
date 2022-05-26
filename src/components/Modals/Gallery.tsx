@@ -16,7 +16,7 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { GrNext, GrPrevious } from "react-icons/gr";
-import background from "../../assets/background2.jpg";
+import background from "../../assets/background.jpg";
 
 function Gallery({
     isOpen,

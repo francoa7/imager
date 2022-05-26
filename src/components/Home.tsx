@@ -1,6 +1,7 @@
 import {
     Box,
     Button,
+    CircularProgress,
     IconButton,
     Image,
     Link,
@@ -25,7 +26,7 @@ import DeleteFile from "./Modals/DeleteFile";
 import { FiLogOut } from "react-icons/fi";
 import { IoAdd } from "react-icons/io5";
 import Gallery from "./Modals/Gallery";
-import background from "../assets/background2.jpg";
+import background from "../assets/background.jpg";
 import jpgimage from "../assets/jpgs.svg";
 
 function Home() {
@@ -360,7 +361,18 @@ function Home() {
                     </Stack>
                 </>
             ) : isLoading ? (
-                <Text>Loading</Text>
+                <Stack
+                    w={"100%"}
+                    h={"100vh"}
+                    alignItems={"center"}
+                    justifyContent={"center"}
+                >
+                    <CircularProgress
+                        isIndeterminate
+                        color={"pink"}
+                        size={"10rem"}
+                    />
+                </Stack>
             ) : (
                 <>
                     <Stack
