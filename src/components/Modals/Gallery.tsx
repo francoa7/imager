@@ -68,7 +68,7 @@ function Gallery({
                 );
                 const link = document.createElement("a");
                 link.href = url;
-                link.setAttribute("download", "image.jpg");
+                link.setAttribute("download", filename);
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
@@ -107,7 +107,7 @@ function Gallery({
                         color={"primaryDark"}
                         icon={<FiDownload />}
                         fontSize={"lg"}
-                        right={"5%"}
+                        right={"4rem"}
                         position={"absolute"}
                         top={"0"}
                         mt={"0.5rem !important"}
