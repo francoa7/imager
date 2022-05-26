@@ -32,6 +32,7 @@ import jpgimage from "../assets/jpgs.svg";
 function Home() {
     const [fileToDelete, setFileToDelete] = useState("");
     const [imageToShow, setImageToShow] = useState("");
+    const [fileNameToShow, setFileNameToShow] = useState("");
     const {
         isOpen: isAddFileOpen,
         onOpen: onAddFileOpen,
@@ -91,8 +92,9 @@ function Home() {
         onDeleteFileOpen();
     }
 
-    function openGallery(image: string) {
+    function openGallery(image: string, filename: string) {
         setImageToShow(image);
+        setFileNameToShow(filename);
         onGalleryOpen();
     }
     console.log({ user });
@@ -318,7 +320,9 @@ function Home() {
                                                 aria-label="delete"
                                                 icon={<FaExternalLinkAlt />}
                                                 colorScheme="gray"
-                                                onClick={() => openGallery(url)}
+                                                onClick={() =>
+                                                    openGallery(url, file.name)
+                                                }
                                             />
                                             <IconButton
                                                 mt="0 !important"
@@ -335,6 +339,11 @@ function Home() {
                                 );
                             })}
                             <Gallery
+                                username={
+                                    user.given_name?.toLowerCase() ||
+                                    user.nickname?.toLowerCase() ||
+                                    ""
+                                }
                                 image={imageToShow}
                                 isOpen={isGalleryOpen}
                                 onClose={onGalleryClose}

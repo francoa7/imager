@@ -98,3 +98,4 @@ export function deleteUserFile(file: string, username: string) {
             .catch((err) => console.log(err));
     };
 }
+

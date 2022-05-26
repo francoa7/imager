@@ -17,17 +17,21 @@ import {
 import { useState } from "react";
 import { GrNext, GrPrevious } from "react-icons/gr";
 import background from "../../assets/background.jpg";
+import { FiDownload } from "react-icons/fi";
+import axios from "axios";
 
 function Gallery({
     isOpen,
     onClose,
     image,
     images,
+    username,
 }: {
     isOpen: boolean;
     onClose: () => void;
     image: string;
     images: Array<string>;
+    username: string;
 }) {
     const [currentImage, setCurrentImage] = useState("");
 
@@ -47,6 +51,31 @@ function Gallery({
         }
     }
 
+    function downloadUserFile() {
+        const splited = currentImage
+            ? currentImage.split("/")
+            : image?.split("/");
+        const filename = splited[splited.length - 1];
+
+        axios({
+            url: `https://o6dr3jtwo0.execute-api.us-east-1.amazonaws.com/dev/imagerapp-bucket/${username}/${filename}`,
+            method: "GET",
+            responseType: "blob",
+        })
+            .then((response) => {
+                const url = window.URL.createObjectURL(
+                    new Blob([response.data])
+                );
+                const link = document.createElement("a");
+                link.href = url;
+                link.setAttribute("download", "image.jpg");
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            })
+            .catch((err) => console.log(err));
+    }
+
     return (
         <>
             <Modal
@@ -61,6 +90,7 @@ function Gallery({
                 <ModalOverlay />
                 <ModalContent bg="blackAlpha.900" borderRadius="0">
                     <ModalCloseButton
+                        mt={"0 !important"}
                         size={"lg"}
                         p="1.2rem"
                         color="red"
@@ -70,6 +100,23 @@ function Gallery({
                             color: "white",
                             bgGradient: "linear(to-br, red ,pink )",
                         }}
+                    />
+                    <IconButton
+                        aria-label="download button"
+                        bg={"white"}
+                        color={"primaryDark"}
+                        icon={<FiDownload />}
+                        fontSize={"lg"}
+                        right={"5%"}
+                        position={"absolute"}
+                        top={"0"}
+                        mt={"0.5rem !important"}
+                        _focus={{ outline: "none" }}
+                        _hover={{
+                            color: "white",
+                            bgGradient: "linear(to-br, primary  ,skobeloff )",
+                        }}
+                        onClick={() => downloadUserFile()}
                     />
                     <ModalBody
                         userSelect={"none"}
