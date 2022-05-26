@@ -402,9 +402,11 @@ function Home() {
                             borderRadius={"xl"}
                             boxShadow={"dark-lg"}
                             rowGap={"2rem"}
+                            h={"fit-content"}
                         >
                             <Stack
                                 w={{ base: "100%", md: "60%" }}
+                                h={{ base: "70%", md: "100%" }}
                                 p={"0 5%"}
                                 justifyContent={"space-between"}
                                 rowGap={"1rem"}
@@ -502,9 +504,13 @@ function Home() {
                                 mt={"0 !important"}
                                 alignSelf={"center"}
                                 display={"flex"}
-                                h={"fit-content"}
+                                h={{ base: "30%", md: "100%" }}
                             >
-                                <Image src={jpgimage} w={"100%"} h={"auto"} />
+                                <Image
+                                    src={jpgimage}
+                                    w={{ base: "auto", md: "100%" }}
+                                    h={{ base: "100%", md: "auto" }}
+                                />
                             </Box>
                         </Stack>
                     </Stack>
