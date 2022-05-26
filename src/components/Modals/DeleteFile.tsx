@@ -56,7 +56,7 @@ function DeleteFile({
         <>
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
-                <ModalContent>
+                <ModalContent fontFamily={"raleway"}>
                     <ModalHeader>{`Confirm ${filename} deleting`}</ModalHeader>
                     <ModalCloseButton _focus={{ outline: "none" }} />
                     <ModalBody>

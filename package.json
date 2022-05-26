@@ -19,6 +19,7 @@
         "@reduxjs/toolkit": "^1.8.1",
         "@types/auth0": "^2.34.19",
         "axios": "^0.27.2",
+        "browser-image-compression": "^2.0.0",
         "firebase": "^9.7.0",
         "framer-motion": "^6.3.3",
         "react": "^18.0.0",

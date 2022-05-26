@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { uploadUserData, uploadUserFile } from "../../redux/actions";
 import { RootState } from "../../redux/store";
 import { UserData } from "../../types/UserData";
+import imageCompression from "browser-image-compression";
 
 type Inputs = {
     file: FileList;
@@ -49,16 +50,45 @@ function AddFile({
 
     const onSubmit: SubmitHandler<Inputs> = async (data) => {
         if (username === "noUserName") return;
-        dispatch<any>(uploadUserFile(data.file[0], username)).then(() =>
-            setChanged(true)
-        );
+        const compressedFile = await compressFile(data.file[0]);
+        compressedFile &&
+            dispatch<any>(uploadUserFile(compressedFile, username)).then(() =>
+                setChanged(true)
+            );
     };
+
+    async function compressFile(file: File) {
+        const imageFile = file;
+        console.log("originalFile instanceof Blob", imageFile instanceof Blob); // true
+        console.log(`originalFile size ${imageFile.size / 1024 / 1024} MB`);
+
+        const options = {
+            maxSizeMB: 1,
+            maxWidthOrHeight: 1920,
+            useWebWorker: true,
+        };
+        let compressedFile;
+        try {
+            compressedFile = await imageCompression(imageFile, options);
+            console.log(
+                "compressedFile instanceof Blob",
+                compressedFile instanceof Blob
+            ); // true
+            console.log(
+                `compressedFile size ${compressedFile.size / 1024 / 1024} MB`
+            ); // smaller than maxSizeMB
+            // await uploadToServer(compressedFile); // write your own logic
+        } catch (error) {
+            console.log(error);
+        }
+        return compressedFile;
+    }
 
     return (
         <>
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
-                <ModalContent>
+                <ModalContent fontFamily={"raleway"}>
                     <ModalHeader>Select your file to upload</ModalHeader>
                     <ModalCloseButton _focus={{ outline: "none" }} />
                     <ModalBody>

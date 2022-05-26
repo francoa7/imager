@@ -1,6 +1,7 @@
 import { extendTheme } from "@chakra-ui/react";
 import "@fontsource/akshar";
 import "@fontsource/asap";
+import "@fontsource/raleway";
 
 const theme = extendTheme({
     colors: {
@@ -15,7 +16,7 @@ const theme = extendTheme({
     },
     fonts: {
         heading: "Open Sans, sans-serif",
-        body: "Raleway, sans-serif",
+        raleway: "Raleway, sans-serif",
         akshar: "Akshar, sans-serif;",
         asap: "Asap, sans-serif",
     },
