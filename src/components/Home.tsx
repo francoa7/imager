@@ -392,12 +392,13 @@ function Home() {
                         alignItems="center"
                         mt="0 !important"
                         bgImg={background}
+                        pb={"2rem"}
                     >
                         <Stack
                             flexDir={{ base: "column", md: "row" }}
                             w={"80%"}
                             bg={"whiteAlpha.900"}
-                            p={"3rem"}
+                            p={{ base: "1.5rem .5rem", md: "3rem" }}
                             borderRadius={"xl"}
                             boxShadow={"dark-lg"}
                             rowGap={"2rem"}
