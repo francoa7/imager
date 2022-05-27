@@ -13,6 +13,7 @@ const theme = extendTheme({
         verdigris: "#61B8AE",
         pine: "#559E96",
         pink: "#f56565",
+        pinkLight: "#f38080",
     },
     fonts: {
         heading: "Open Sans, sans-serif",

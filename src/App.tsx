@@ -8,7 +8,6 @@ function App() {
         <Stack className="App" fontFamily={"raleway"}>
             <Routes>
                 <Route path="/" element={<Home />} />
-                {/* <Route path="/home" element={<Home />} /> */}
             </Routes>
         </Stack>
     );

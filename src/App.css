@@ -84,3 +84,7 @@ button {
 ::-webkit-scrollbar-corner {
     background: transparent;
 }
+
+#imagesContainer {
+    column-width: 270px;
+}

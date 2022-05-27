@@ -158,7 +158,7 @@ function Home() {
                                 <Box
                                     alignSelf="center"
                                     boxShadow="lg"
-                                    p={{ base: ".1rem", lg: ".4rem" }}
+                                    p={{ base: ".1rem", lg: ".3rem" }}
                                     bg="white"
                                     borderRadius="full"
                                     width="fit-content"
@@ -190,7 +190,7 @@ function Home() {
                                         borderRadius="full"
                                         alignSelf="center"
                                         bg="primaryDark"
-                                        color="white"
+                                        color={"white"}
                                         w="fit-content"
                                         boxShadow="lg"
                                         onClick={onAddFileOpen}
@@ -220,14 +220,11 @@ function Home() {
 
                                     <IconButton
                                         borderRadius="full"
-                                        border="2px"
-                                        borderColor="primaryDark"
-                                        bg="transparent"
-                                        color="primaryDark"
+                                        bg="pink"
                                         mt="0 !important"
                                         icon={<FiLogOut />}
                                         aria-label="Logout"
-                                        _hover={{ bg: "primaryLight" }}
+                                        _hover={{ bg: "pinkLight" }}
                                         onClick={() =>
                                             logout({
                                                 returnTo:
@@ -241,131 +238,149 @@ function Home() {
                             </Stack>
                         </Stack>
                         <Stack
-                            id="imagesContainer"
+                            h={"100%"}
+                            width={{ base: "100%", lg: "80%" }}
+                            overflow="scroll"
                             p={{
                                 base: "1rem .1rem 20% .1rem",
-                                lg: "2rem 1rem 2rem 2rem",
+                                lg: "1rem 2rem 1rem 2rem",
                             }}
-                            overflowY="scroll"
-                            h={{ base: "88%", lg: "100%" }}
-                            alignSelf={{ base: "center", lg: "flex-end" }}
-                            width={{ base: "100%", lg: "80%" }}
-                            justifyContent={{
-                                base: "center",
-                                lg: "center",
-                            }}
-                            alignItems="center"
-                            flexDirection="row"
-                            flexWrap="wrap"
-                            columnGap={{ base: "1rem", lg: ".5rem" }}
-                            rowGap={{ base: "1rem", lg: ".5rem" }}
                         >
-                            {currentUserData.files?.map((file, index) => {
-                                const url: string = `https://o6dr3jtwo0.execute-api.us-east-1.amazonaws.com/dev/imagerapp-bucket/${
-                                    user.given_name?.toLowerCase() ||
-                                    user.nickname?.toLowerCase()
-                                }/${file.name}`;
-                                return (
-                                    <Box
-                                        border={"4px"}
-                                        borderColor={"white"}
-                                        mt="0 !important"
-                                        position="relative"
-                                        boxShadow="dark-lg"
-                                        key={`file:${file.time}`}
-                                        bg="white"
-                                        boxSize={{ base: "45vw", lg: "220px" }}
-                                        w={"30%"}
-                                        minW={{ base: "40vw", lg: "220px" }}
-                                        role="group"
-                                        _hover={{ cursor: "pointer" }}
-                                    >
-                                        <Image
-                                            minW="100%"
-                                            h="100%"
-                                            objectFit="cover"
-                                            src={url}
-                                            alt="Foto no se cargo"
-                                        />
-                                        <Stack
-                                            transition="all .3s"
-                                            opacity={0}
-                                            _groupHover={{ opacity: "0.6" }}
-                                            left="0"
-                                            top="0"
-                                            width="100%"
-                                            height="100%"
-                                            position="absolute"
-                                            bg="#000"
-                                            flexDirection="row"
-                                            alignItems="center"
-                                            justifyContent="center"
-                                        />
-                                        <Stack
-                                            id="imageActions"
-                                            alignItems="center"
-                                            justifyContent="space-evenly"
-                                            flexDirection="row"
-                                            top="0"
-                                            left="0"
-                                            width="100%"
-                                            height="100%"
-                                            position="absolute"
-                                            opacity={0}
-                                            transition="all .3s"
-                                            _groupHover={{ opacity: "1" }}
+                            <Box
+                                borderRadius={"2xl"}
+                                id="imagesContainer"
+                                className={{ base: "", lg: "" }}
+                                gap={".5rem"}
+                                //   bg={"white"}
+                                p={"1rem 2.5rem"}
+
+                                //     minH={{ base: "88%", lg: "100%" }}
+                                //     h={"80%"}
+                                //     alignSelf={{ base: "center", lg: "flex-end" }}
+                                //     //     h={"fit-content"}
+                                //     //     justifyContent={{
+                                //     //         base: "center",
+                                //     //         lg: "center",
+                                //     //     }}
+                                //     //     flexDirection="row"
+                                //     //     alignItems="center"
+                                //     //     flexWrap="wrap"
+                                //     //     columnGap={{ base: "1rem", lg: ".5rem" }}
+                                //     //     rowGap={{ base: "1rem", lg: ".5rem" }}
+                            >
+                                {currentUserData.files?.map((file, index) => {
+                                    const url: string = `https://o6dr3jtwo0.execute-api.us-east-1.amazonaws.com/dev/imagerapp-bucket/${
+                                        user.given_name?.toLowerCase() ||
+                                        user.nickname?.toLowerCase()
+                                    }/${file.name}`;
+                                    return (
+                                        <Box
+                                            mb={".5rem"}
+                                            mt="0 !important"
+                                            position="relative"
+                                            key={`file:${file.time}`}
+                                            bg={"white"}
+                                            role="group"
+                                            _hover={{ cursor: "pointer" }}
+                                            borderRadius={"2xl"}
+                                            justifyContent={"center"}
+                                            alignItems={"center"}
                                         >
-                                            <IconButton
-                                                width="fit-content"
-                                                aria-label="delete"
-                                                icon={<FaExternalLinkAlt />}
-                                                colorScheme="gray"
-                                                onClick={() =>
-                                                    openGallery(url, file.name)
-                                                }
+                                            <Image
+                                                p={".5rem"}
+                                                borderRadius={"3xl"}
+                                                w={"100%"}
+                                                objectFit="cover"
+                                                src={url}
+                                                alt="Foto no se cargo"
+                                                boxShadow={"lg"}
                                             />
-                                            <IconButton
-                                                mt="0 !important"
-                                                width="fit-content"
-                                                onClick={() =>
-                                                    openDeleteModal(file.name)
-                                                }
-                                                aria-label="delete"
-                                                icon={<FaTrash />}
-                                                colorScheme="red"
+                                            <Stack
+                                                transition="all .3s"
+                                                opacity={0}
+                                                _groupHover={{ opacity: "0.6" }}
+                                                left="0"
+                                                top="0"
+                                                width="100%"
+                                                height="100%"
+                                                position="absolute"
+                                                bg="#000"
+                                                flexDirection="row"
+                                                alignItems="center"
+                                                borderRadius={"2xl"}
+                                                justifyContent="center"
                                             />
-                                        </Stack>
-                                    </Box>
-                                );
-                            })}
-                            <Gallery
-                                username={
-                                    user.given_name?.toLowerCase() ||
-                                    user.nickname?.toLowerCase() ||
-                                    ""
-                                }
-                                image={imageToShow}
-                                isOpen={isGalleryOpen}
-                                onClose={onGalleryClose}
-                                images={currentUserData.files.map(
-                                    (file) =>
-                                        `https://o6dr3jtwo0.execute-api.us-east-1.amazonaws.com/dev/imagerapp-bucket/${
-                                            user.given_name?.toLowerCase() ||
-                                            user.nickname?.toLowerCase()
-                                        }/${file.name}`
-                                )}
-                            />
-                            <DeleteFile
-                                isOpen={isDeleteFileOpen}
-                                onClose={onDeleteFileClose}
-                                username={
-                                    user.given_name?.toLocaleLowerCase() ||
-                                    user.nickname?.toLowerCase() ||
-                                    "noUserName"
-                                }
-                                filename={fileToDelete}
-                                currentUserData={currentUserData}
-                            />
+                                            <Stack
+                                                id="imageActions"
+                                                alignItems="center"
+                                                justifyContent="space-evenly"
+                                                flexDirection="row"
+                                                top="0"
+                                                left="0"
+                                                width="100%"
+                                                height="100%"
+                                                position="absolute"
+                                                opacity={0}
+                                                transition="all .3s"
+                                                _groupHover={{ opacity: "1" }}
+                                            >
+                                                <IconButton
+                                                    width="fit-content"
+                                                    aria-label="delete"
+                                                    icon={<FaExternalLinkAlt />}
+                                                    colorScheme="gray"
+                                                    onClick={() =>
+                                                        openGallery(
+                                                            url,
+                                                            file.name
+                                                        )
+                                                    }
+                                                />
+                                                <IconButton
+                                                    mt="0 !important"
+                                                    width="fit-content"
+                                                    onClick={() =>
+                                                        openDeleteModal(
+                                                            file.name
+                                                        )
+                                                    }
+                                                    aria-label="delete"
+                                                    icon={<FaTrash />}
+                                                    colorScheme="red"
+                                                />
+                                            </Stack>
+                                        </Box>
+                                    );
+                                })}
+                                <Gallery
+                                    username={
+                                        user.given_name?.toLowerCase() ||
+                                        user.nickname?.toLowerCase() ||
+                                        ""
+                                    }
+                                    image={imageToShow}
+                                    isOpen={isGalleryOpen}
+                                    onClose={onGalleryClose}
+                                    images={currentUserData.files.map(
+                                        (file) =>
+                                            `https://o6dr3jtwo0.execute-api.us-east-1.amazonaws.com/dev/imagerapp-bucket/${
+                                                user.given_name?.toLowerCase() ||
+                                                user.nickname?.toLowerCase()
+                                            }/${file.name}`
+                                    )}
+                                />
+                                <DeleteFile
+                                    isOpen={isDeleteFileOpen}
+                                    onClose={onDeleteFileClose}
+                                    username={
+                                        user.given_name?.toLocaleLowerCase() ||
+                                        user.nickname?.toLowerCase() ||
+                                        "noUserName"
+                                    }
+                                    filename={fileToDelete}
+                                    currentUserData={currentUserData}
+                                />
+                            </Box>
                         </Stack>
                     </Stack>
                 </>
