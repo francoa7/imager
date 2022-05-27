@@ -249,7 +249,6 @@ function Home() {
                             <Box
                                 borderRadius={"2xl"}
                                 id="imagesContainer"
-                                className={{ base: "", lg: "" }}
                                 gap={".5rem"}
                                 //   bg={"white"}
                                 p={"1rem 2.5rem"}
